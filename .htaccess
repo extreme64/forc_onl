@@ -1,0 +1,3 @@
+RewriteEngine on
+RewriteCond $1 !^(index\.php|css|js|slike|images|fonts|altprizm|proto|owa|robots\.txt|style\.css|bootstrap\.css\.map|proba\.js|contact\.html|vendor|fontawesome-webfont\.eot|fontawesome-webfont\.woff|fontawesome-webfont\.ttf|fontawesome-webfont\.svg)
+RewriteRule ^(.*)$ index.php/$1 [L]

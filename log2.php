@@ -1,0 +1,1 @@
+admin|1|1446665820|log pregled;

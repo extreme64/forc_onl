@@ -1,0 +1,105 @@
+00:10:26 2018-10-22 10662 [debug_log] Starting installation of module: base 
+00:10:26 2018-10-22 10662 [debug_log] owa_request Table Created. 
+00:10:27 2018-10-22 10662 [debug_log] owa_session Table Created. 
+00:10:27 2018-10-22 10662 [debug_log] owa_document Table Created. 
+00:10:27 2018-10-22 10662 [debug_log] owa_feed_request Table Created. 
+00:10:27 2018-10-22 10662 [debug_log] owa_click Table Created. 
+00:10:27 2018-10-22 10662 [debug_log] owa_ua Table Created. 
+00:10:27 2018-10-22 10662 [debug_log] owa_referer Table Created. 
+00:10:27 2018-10-22 10662 [debug_log] owa_site Table Created. 
+00:10:27 2018-10-22 10662 [debug_log] owa_visitor Table Created. 
+00:10:27 2018-10-22 10662 [debug_log] owa_host Table Created. 
+00:10:27 2018-10-22 10662 [debug_log] owa_exit Table Created. 
+00:10:27 2018-10-22 10662 [debug_log] owa_os Table Created. 
+00:10:27 2018-10-22 10662 [debug_log] owa_impression Table Created. 
+00:10:27 2018-10-22 10662 [debug_log] owa_configuration Table Created. 
+00:10:27 2018-10-22 10662 [debug_log] owa_user Table Created. 
+00:10:28 2018-10-22 10662 [debug_log] owa_domstream Table Created. 
+00:10:28 2018-10-22 10662 [debug_log] owa_action_fact Table Created. 
+00:10:28 2018-10-22 10662 [debug_log] owa_search_term_dim Table Created. 
+00:10:28 2018-10-22 10662 [debug_log] owa_ad_dim Table Created. 
+00:10:28 2018-10-22 10662 [debug_log] owa_source_dim Table Created. 
+00:10:28 2018-10-22 10662 [debug_log] owa_campaign_dim Table Created. 
+00:10:28 2018-10-22 10662 [debug_log] owa_location_dim Table Created. 
+00:10:28 2018-10-22 10662 [debug_log] owa_commerce_transaction_fact Table Created. 
+00:10:28 2018-10-22 10662 [debug_log] owa_commerce_line_item_fact Table Created. 
+00:10:28 2018-10-22 10662 [debug_log] owa_queue_item Table Created. 
+00:10:28 2018-10-22 10662 [debug_log] owa_site_user Table Created. 
+00:10:28 2018-10-22 10662 [debug_log] Post install proceadure was a success. 
+00:10:28 2018-10-22 10662 [debug_log] Module base activated 
+00:10:28 2018-10-22 10662 [debug_log] Installation complete. 
+00:10:28 2018-10-22 10662 [debug_log] Checking for existence of default site. 
+00:10:28 2018-10-22 10662 [debug_log] Created default site. 
+00:10:28 2018-10-22 10662 [debug_log] Install Complete Flag added to configuration 
+00:21:24 2018-10-22 8504 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+00:22:43 2018-10-22 11015 [debug_log] Configuration changes saved to database. 
+09:27:18 2018-11-02 16939 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+11:11:28 2018-11-15 31121 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+08:29:36 2018-11-17 4243 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+12:46:14 2018-11-17 7088 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+12:54:26 2018-11-17 30820 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+13:34:53 2018-11-17 4122 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+13:36:27 2018-11-17 4845 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+13:39:10 2018-11-17 8775 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+13:44:42 2018-11-17 29354 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+14:38:37 2018-11-17 17070 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+14:42:26 2018-11-17 929 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+15:28:53 2018-11-17 30839 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+16:30:02 2018-11-17 2146 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+16:36:49 2018-11-17 20706 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+16:53:10 2018-11-17 30980 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+17:06:19 2018-11-17 24963 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+18:58:50 2018-11-17 6317 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+19:09:20 2018-11-17 369 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+19:15:07 2018-11-17 20846 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+19:16:21 2018-11-17 22771 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+19:21:02 2018-11-17 8734 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+19:58:48 2018-11-17 834 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+20:05:47 2018-11-17 21047 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+22:51:30 2018-11-17 14978 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+22:59:42 2018-11-17 23272 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+23:02:12 2018-11-17 6563 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+23:07:06 2018-11-17 12567 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+23:29:45 2018-11-17 23360 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+23:35:55 2018-11-17 8534 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+23:46:09 2018-11-17 29235 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+00:13:39 2018-11-18 26799 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+00:22:15 2018-11-18 16502 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+00:23:49 2018-11-18 17214 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+00:31:36 2018-11-18 2746 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+14:06:30 2018-11-18 16728 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+14:10:10 2018-11-18 23327 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+14:20:16 2018-11-18 21277 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+14:20:38 2018-11-18 22955 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+14:34:28 2018-11-18 22950 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+20:41:31 2018-11-18 14899 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+20:41:43 2018-11-18 15033 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+13:38:42 2018-11-19 12500 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+13:45:17 2018-11-19 8570 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+14:05:48 2018-11-19 18482 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+14:06:28 2018-11-19 19304 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+14:40:10 2018-11-19 6898 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+15:10:59 2018-11-19 880 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+15:12:59 2018-11-19 6342 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+15:19:24 2018-11-19 20551 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+15:25:02 2018-11-19 12824 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+15:25:20 2018-11-19 13103 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+16:00:13 2018-11-19 6537 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+16:05:46 2018-11-19 24720 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+16:07:33 2018-11-19 28983 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+17:35:03 2018-11-19 20637 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+17:36:22 2018-11-19 23213 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+19:21:49 2018-11-19 14868 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+11:57:47 2018-11-20 27470 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+12:17:49 2018-11-20 2179 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+12:18:12 2018-11-20 2647 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+12:50:04 2018-11-20 2557 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+13:07:20 2018-11-20 29062 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+13:09:42 2018-11-20 592 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+13:44:58 2018-11-20 14345 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+13:47:21 2018-11-20 17370 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+13:48:52 2018-11-20 20763 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+14:43:05 2018-11-20 2209 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+14:43:43 2018-11-20 2765 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+16:16:46 2018-11-20 23015 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 
+22:08:01 2018-12-05 2174 [debug_log] no rss content found at: http://www.openwebanalytics.com/?feed=rss2 

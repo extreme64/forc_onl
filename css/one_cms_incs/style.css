@@ -158,7 +158,7 @@ input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly i
 body {
 	font: 14px "Montserrat", sans-serif;
 	background-color: #18191c;
-	color: #898989;
+	color: #aeaeae;
 	overflow: hidden;
 	font-weight: 400;
 }

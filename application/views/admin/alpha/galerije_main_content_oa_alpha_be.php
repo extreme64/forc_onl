@@ -3,11 +3,18 @@
         .box-zasebni-poc-admin{max-width: 33%; float:left; min-width:200px}
         .display-none{display: none}
         label{float: left; width: 100px;}
-        .slika_prev_lista{width: 35px; height: 25px; float: left; padding: 1px; background-color: orange}
         .left{float: left;}
-        .edit-rm-off{position: relative;
-                        left: 15px;
-                        top: 2px;}
+        .edit-rm-off{
+          position: relative;
+          font-size: 20px;
+          left: 0px;
+          top: 20px;
+        }
+        #pictures_prev_box img
+        {
+          width: 100px;
+          height: 80px;
+        }
 </style>
 
 <!--  -->
@@ -19,7 +26,7 @@
   // ON READY
   $(document).ready(function () {
 
-    let galerije_item_edit = new GalerijeItemEdit("[name='new']", "[name='edit']", "[btn-new]", "[btn-edit]", "[data-id='sub_nsl']" ,"forma_polja", "form_data");
+    let galerije_item_edit = new GalerijeItemEdit("[name='new']", "[name='edit']", "[btn-new]", "[btn-edit]", "[data-id='sub_gal']" ,"forma_polja", "form_data");
 
     // btn event bind
     galerije_item_edit.new_item_btn_click();
@@ -27,6 +34,62 @@
                                                                                                 inp_title : 'title'
                                                                                     });
 
+      // otvaranje galerije i prikaz slika
+      $("[data-ui-slikegalerija___]").click(function()
+      {
+          var forma_polja;
+          forma_polja = {
+              gid: $(this).attr("data-gid")
+          }
+          $.ajax({
+              url:"<?php print $base_url ?>admin/galerije/slike_iz_galerije",
+              data: forma_polja,
+              type: "POST",
+              dataType: 'JSON',
+              error:function(x,s,e){alert(x.responseText + "Err: "+e+ " | S: "+s);},
+              success: function(val)
+              {
+
+                  if(val["data"] != false)
+                  {
+
+                      var html="";
+                      for(var i in val["data"]) {
+                         html += "<i data-sel-stat=\"0\" data-edit-unos=\""+val["data"][i].id_image+"\" class=\"edit-rm-off left far fa-square\" >"
+                                      + " <img width=\"100\" src=\"<?php print $base_url ?>images/upload/" + val["data"][i].url+ "\"  alt=\""
+                                      + val["data"][i].alt+ "\" title=\"" + val["data"][i].author+ "\"  />  "
+                                  + " </i> ";
+                      }
+                      if(html!="")
+                      {
+                          // resetuj icone
+                          $("[data-gid] > i").removeClass('far fa-folder-open').addClass('far fa-folder');
+                          // setuj selektovanu, da reflektuje otvorenu galeriju
+                          $("[data-gid='"+forma_polja["gid"]+"'] > i").removeClass('far fa-folder').addClass('far fa-folder-open');
+                          $("[data-slikegalerija-box-prikaz]").html(html);
+
+                          // setovanje koja je galerija otvorena
+                          ostaleGalerije( selektovana_galerija() );
+
+
+                      }
+                  }
+                  else
+                      alert("Došlo je do greške! " + val["data"]);
+              }
+          });
+
+          /** prikaz/skrivanje boksa u kome se iscrtava html za prikaz slika
+           * unutar galerije koja je selektovana
+           */
+          if($("[data-slikegalerija-box]").css("display")=="none") {
+              $("[data-slikegalerija-box]").toggle(700);
+          }
+          else{
+              $("[data-slikegalerija-box]").toggle(100).toggle(700);
+          }
+
+      })
     // on btn clic submit
   /*  galerije_item_edit.ajax_submit("[data-id='sub_nsl !!!!!!! ']");*/
 
@@ -38,7 +101,7 @@
         alert( "Error requesting page " + settings.url +" "+ settings + "" );
     });*/
 
-    $(document).ready(function()
+    $('').ready(function()
     {
 
         $("[data-id='sub_nsl']").click(function(event){
@@ -141,98 +204,6 @@
 
         });
 
-        // prikaz edit boksa i forme sa sve podacima o galeriji
-        $("[data-edit-unos]").click(function()
-        {
-            var j = $(this).attr("data-edit-unos");
-            console.log( j + " | " + $("[name='inp_galid']").val())
-
-            if( j != $("[name='inp_galid']").val() )     // slati ajax samo ako trazimo drugu galeriju
-            {
-                if( $("[name='inp_galid']").val() != undefined ){
-                    if($("[name='edit-galeriju']").css("display")=="none") {
-                        $("[name='edit-galeriju']").toggle(700);
-                    }
-                    else{
-                        $("[name='edit-galeriju']").toggle(100).toggle(700);
-                    }
-                }
-
-                $.ajax({
-                    url:'<?php print $base_url ?>admin/galerije/info_galerija_xcall/'+ j,
-                    dataType: 'json',
-                    success: function(val)
-                    {
-                        $("[name='inp_galid']").val(val[0]['id_gal']);
-                        $("[name='inp_title']").val(val[0]['title']);
-
-                        $("[name='nova-galerija']").fadeOut(100);
-                        $("[name='edit-galeriju']").fadeIn(400);
-                    }
-                });
-            }
-
-        });
-
-
-        // otvaranje galerije i prikaz slika
-        $("[data-ui-slikegalerija]").click(function(){
-
-
-
-            var forma_polja;
-            forma_polja = {
-                gid: $(this).attr("data-gid")
-            }
-            $.ajax({
-                url:"<?php print $base_url ?>admin/galerije/slike_iz_galerije",
-                data: forma_polja,
-                type: "POST",
-                dataType: 'JSON',
-                error:function(x,s,e){alert(x.responseText + "Err: "+e+ " | S: "+s);},
-                success: function(val)
-                {
-
-                    if(val["data"] != false)
-                    {
-
-                        var html="";
-                        for(var i in val["data"]) {
-                           html += "<i data-sel-stat=\"0\" data-edit-unos=\""+val["data"][i].id_image+"\" class=\"edit-rm-off left far fa-square\" >"
-                                        + " <img width=\"100\" src=\"<?php print $base_url ?>images/upload/" + val["data"][i].url+ "\"  alt=\""
-                                        + val["data"][i].alt+ "\" title=\"" + val["data"][i].author+ "\"  />  "
-                                    + " </i> ";
-                        }
-                        if(html!="")
-                        {
-                            // resetuj icone
-                            $("[data-gid] > i").removeClass('far fa-folder-open').addClass('far fa-folder');
-                            // setuj selektovanu, da reflektuje otvorenu galeriju
-                            $("[data-gid='"+forma_polja["gid"]+"'] > i").removeClass('far fa-folder').addClass('far fa-folder-open');
-                            $("[data-slikegalerija-box-prikaz]").html(html);
-
-                            // setovanje koja je galerija otvorena
-                            ostaleGalerije( selektovana_galerija() );
-
-
-                        }
-                    }
-                    else
-                        alert("Došlo je do greške! " + val["data"]);
-                }
-            });
-
-            /** prikaz/skrivanje boksa u kome se iscrtava html za prikaz slika
-             * unutar galerije koja je selektovana
-             */
-            if($("[data-slikegalerija-box]").css("display")=="none") {
-                $("[data-slikegalerija-box]").toggle(700);
-            }
-            else{
-                $("[data-slikegalerija-box]").toggle(100).toggle(700);
-            }
-
-        })
 
         /** selektovanje slike. Selektovane slike se mogu dalje manipulisati */
         $(document).unbind().on( "click", "[data-sel-stat]", function() {      // .on jer je ovaj elemnt dodan kroz js nakon kreiranja dom-a  | .unbind() FIX for .on called 2x
@@ -240,48 +211,19 @@
             //var elem = $(this).get(0);
             //setovanje grafike da reflektuje status selektovanog checkbox-a
             if($(this).attr("data-sel-stat") == "1")
-                $(this).attr("data-sel-stat", "0").removeClass('fa-check-square-o').addClass('fa-square-o');
+                $(this).attr("data-sel-stat", "0").attr('data-icon', 'square');
             else
-                $(this).removeClass('fa-square-o').addClass('fa-check-square-o').attr("data-sel-stat", "1");
+                $(this).attr("data-sel-stat", "1").attr('data-icon', 'check-square');
         });
 
         $("[data-akcije-slike]").change(function(){
             // ucitaj galerije u selection, sve osim trenutno otvorene
-            ostaleGalerije( selektovana_galerija() );
+            // >>>>>>>> ostaleGalerije( selektovana_galerija() );
         })
 
 
 
 // *******************
-        function selektovana_galerija()
-        {
-            var opened_gallery;
-            $.each($("[data-gid] > i") , function( index, value )
-            {
-                if($(value).hasClass("fa fa-folder-open"))
-                    opened_gallery = $(value).parent(0).attr("data-gid");
-            });
-            return  opened_gallery;
-        }
-
-        function ostaleGalerije(str){
-            data_gid = { id1 : str }
-
-            $.ajax({
-                url:"<?php print $base_url ?>admin/galerije/sve_galerije/exc",
-                data: data_gid,
-                type: "POST",
-                dataType: 'JSON',
-                error:function(x,s,e){alert(x.responseText + "Err: "+e+ " | Status: "+s);},
-                success: function(val)
-                {
-                    var html="", data = val["data"];
-                    for(var i in data)
-                       html +=  "<option value=\"" + data[i].id_gal + "\">" + data[i].title + "</option>";
-                    $("[data-akcije-izbor-galerije]").html(html);
-                }
-            });
-        }
 
         // actions for iamges in the gallery
         $("[data-ui-slike-ok]").click(function()
@@ -317,7 +259,7 @@
                             success: function(val)
                             {
                                 alert(JSON.stringify(val));
-                                console.log(val["data"]);
+                                //console.log(val["data"]);
                             }
                         });
                     }else{alert("Nije odabrana destinacija ili"); return;}
@@ -393,10 +335,6 @@
                                     <span class="display_inline" data-ui-title="<?php print $g->id_gal ?>">
                                       <?php print $g->title ?>
                                     </span>
-
-                                    <a data-gid="<?php print $g->id_gal ?>" data-ui-slikegalerija title="Otvori galeriju i prikazi slike" class="display_inline" >
-                                      <i class="fa fa-folder"></i>
-                                    </a>  <!-- fa fa-folder-open -->
 
                                     <a btn-edit edit-item-id=<?php print $g->id_gal ?> title="Izmena podataka" class="display_inline" >
                                       <i class="fas fa-cog"  style="float: right; margin-left: 45px" ></i>
@@ -498,7 +436,7 @@
                                             <button data-ui-slike-ok="">OK</button>
                                         </div>
 
-                                        <div data-slikegalerija-box-prikaz="">
+                                        <div id="pictures_prev_box" data-slikegalerija-box-prikaz="">
                                         <!-- images -->
                                         </div>
                                     </div>

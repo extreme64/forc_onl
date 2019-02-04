@@ -3,14 +3,14 @@
 
     <!-- ONE ADMIN THEME HTML -->
 
-		<!-- Loader << TODO delete this -->
+		<!-- Loader << TODO: delete this-->
 		<!-- <div class="loader" style="display: none;">
 		  	<div class="inner one"></div>
 		  	<div class="inner two"></div>
 		  	<div class="inner three"></div>
 		</div> -->
 
-    <!-- TODO remove header tag duplicate -->
+    <!-- TODO: remove header tag duplicate-->
 		<header id="header" class="header fixed">
 			<div class="navbar-top">
 				<div class="curren-menu info-left">

@@ -197,7 +197,7 @@
                                         </div> <!-- /.menu-wrapper -->
                                 </div> <!-- /.row -->
                         </div> <!-- /.main-header -->
-                        <!-- //TODO responsive menu -->
+                        <!-- //TODO: responsive menu-->
                         <div id="responsive-menu">
                                 <ul>
                                         <li><a href="index.html">Home</a></li>

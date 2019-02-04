@@ -137,7 +137,7 @@ class GalerijeItemEdit extends ItemEdit
   }
 
 
-  // FIXME:to clean, no use for this, value past directly
+  // FIXME: to clean, no use for this, value past directly
   /*selektovana_galerija()
   {
       let opened_gallery;
@@ -148,6 +148,9 @@ class GalerijeItemEdit extends ItemEdit
       });
       return  opened_gallery;
   }*/
+
+
+
 
 
 }

@@ -830,7 +830,7 @@
         }; // Member Active
 
         /*sadam removed to prevent animation on click for tab navigation */
-        // TODO recycle this to be used with real links. We need to solve
+        // TODO: recycle this to be used with real links. We need to solve
         // issue of turning two <a> tags to one wraper div for link in vertical nav. tabs
 
         var tabNav = function() {

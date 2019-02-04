@@ -3,13 +3,13 @@
 
 class Log_aktivnost_urednika extends CI_Controller {
     
-    
+
     public static $SEPARATOR = ";";
 
     function __construct() {
         parent::__construct();
         $this->load->helper('file');
-        /*$this->load->model('Log_aktivnost_urednika_model'); //TODO !!!!
+        /*$this->load->model('Log_aktivnost_urednika_model'); //TODO:
         $this->k_model = new Log_aktivnost_urednika_model();*/
     }
 
@@ -28,14 +28,14 @@ class Log_aktivnost_urednika extends CI_Controller {
              //echo 'Aktivnost zabeležena!';
         }
     }
-    
-    
+
+
     public function log_pregled()
     {
         $putanja = './log.php';
         $stara_aktivnost = read_file('./log.php');
-       
+
         return ''. $stara_aktivnost;
-        
+
     }
 }

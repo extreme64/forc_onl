@@ -2,9 +2,9 @@
         <div class="footer-add" >
 
             <div class="site-header container-fluid">
-                        <div class="footer-add" >  
+                        <div class="footer-add" >
                                 <div class="col-md-6 col-sm-6">
-                                      
+
                                 </div> <!-- /.logo -->
                                 <div class="social-top col-md-6 col-sm-6">
                                         <ul>
@@ -19,14 +19,14 @@
                         <div class="footer-mod">
                                 <div class="row">
                                         <div class="main-header-left col-md-3 col-sm-6 col-xs-8">
-                                        
+
                                                 <?php $ulogovan = $this->session->userdata('name'); ?>
 
                                                 <?php if (!$ulogovan): ?>
                                                                 <a href="<?php print $base_url ?>registracija" class="btn-left  fa fa-user-plus"        title="Registruj nalog"></a><!-- registracija dugme -->
                                                                 <a href="<?php print $base_url ?>logovanje/" class="btn-left fa fa-toggle-off"  title="Uloguj se"></a><!-- logovanje dugme -->
                                                         <?php else: ?>
-                                                                <!-- FIXME: link ka profilu ispraviti, ili realizovati profil -->
+                                                                <!-- FIXME: link ka profilu ispraviti, ili realizovati profil-->
                                                                 <a href="<?php print $base_url ?>nalog/korisnik/<?php print $this->session->userdata('id_user'); ?>" class="btn-left fa fa-user"  title="Moj profil"></a><!-- profil dugme -->
                                                                 <a href="<?php print $base_url ?>logovanje/izlaz" class="btn-left fa fa-toggle-on" title="Izloguj se"></a><!-- logovanje dugme -->
                                                 <?php endif ?>
@@ -34,8 +34,8 @@
                                         </div> <!-- /.main-header-left -->
                                 </div> <!-- /.row -->
                         </div> <!-- /.main-header -->
-                        <!-- //TODO responsive menu -->
-                       
+                        <!-- //TODO: responsive menu-->
+
                 </div> <!-- /.site-header -->
         </div>
 </footer>

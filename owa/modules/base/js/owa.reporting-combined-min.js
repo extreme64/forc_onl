@@ -1510,7 +1510,7 @@ $.widget("ui.selectmenu", {
 			.bind("click.selectmenu", function() {
 				self._refreshValue();
 			})
-			// FIXME: newelement can be null under unclear circumstances in IE8
+			// FIXME newelement can be null under unclear circumstances in IE8
 			// TODO not sure if this is still a problem (fnagel 20.03.11)
 			.bind("focus.selectmenu", function() {
 				if (self.newelement) {
@@ -1859,7 +1859,7 @@ $.widget("ui.selectmenu", {
 	open: function(event) {
 		var self = this;
 		if ( this.newelement.attr("aria-disabled") != 'true' ) {
-			// TODO: seems to be useless
+			// TODO seems to be useless
 			// this._refreshPosition();
 			this._closeOthers(event);
 			this.newelement

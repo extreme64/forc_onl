@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: forwardcreating.com
+Token: 2e2e7bbcfa68a39abbc125e2291a50964867f7cc9b13240e8052d2c93cd5e3ef

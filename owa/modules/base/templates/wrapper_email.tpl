@@ -1,3 +1,3 @@
--- Open Web Analytics -------------------------------
-
-<?php echo $body;?>
+-- Open Web Analytics -------------------------------
+
+<?php echo $body;?>

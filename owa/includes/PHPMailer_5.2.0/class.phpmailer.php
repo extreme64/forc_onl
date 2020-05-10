@@ -1359,7 +1359,7 @@ class PHPMailer {
     } elseif ($this->sign_key_file) {
       try {
         $file = tempnam('', 'mail');
-        file_put_contents($file, $body); //TODO: check this worked
+        file_put_contents($file, $body); //TODO check this worked
         $signed = tempnam("", "signed");
         if (@openssl_pkcs7_sign($file, $signed, "file://".$this->sign_cert_file, array("file://".$this->sign_key_file, $this->sign_key_pass), NULL)) {
           @unlink($file);
@@ -1857,7 +1857,7 @@ class PHPMailer {
       case 'text':
       default:
         // Replace every high ascii, control =, ? and _ characters
-        //TODO: using /e (equivalent to eval()) is probably not a good idea
+        //TODO using /e (equivalent to eval()) is probably not a good idea
         $encoded = preg_replace('/([\000-\011\013\014\016-\037\075\077\137\177-\377])/e',
                                 "'='.sprintf('%02X', ord(stripslashes('\\1')))", $encoded);
         break;

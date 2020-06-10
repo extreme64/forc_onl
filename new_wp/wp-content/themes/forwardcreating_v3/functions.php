@@ -148,10 +148,12 @@ function forwardcreating_v3_scripts() {
 	wp_enqueue_style( 'main-style', get_template_directory_uri() . '/layouts/main.css' );
 
 
+	// wp_deregister_script('jquery-core');
+	// wp_deregister_script('jquery-migrate');
 	wp_enqueue_script( 'jquery-3.3.1.min', 'https://code.jquery.com/jquery-3.3.1.min.js', array(), '20151215', false );
 	// TOOLTIP & POPOVER POSITIONING ENGINE
-	wp_enqueue_script( 'jpopper.js.1.14.7', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', array('jquery-3.3.1.slim.min'), '20151215', true );
-	wp_enqueue_script( 'bootstrap.4.3.1', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', array('jquery-3.3.1.slim.min', 'jpopper.js.1.14.7'), '20151215', true );
+	wp_enqueue_script( 'jpopper.js.1.14.7', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', array('jquery-3.3.1.min'), '20151215', true );
+	wp_enqueue_script( 'bootstrap.4.3.1', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', array('jquery-3.3.1.min', 'jpopper.js.1.14.7'), '20151215', true );
 
 
 	wp_enqueue_script( 'fontawesome-kit-5', 'https://kit.fontawesome.com/9fa9ed7a49.js', array(), '20151215', true );
@@ -171,6 +173,8 @@ function forwardcreating_v3_scripts() {
 	/** REST API */
 	// Provide a global object to our JS file contaning our REST API endpoint, and API nonce
 	// Nonce must be 'wp_rest' !
+	//   ==   REST API includes a technique called nonces to avoid CSRF issues. This prevents
+	//        other sites from forcing you to perform actions without explicitly intending to do so
 	wp_localize_script( 'rest', 'rest_object',
 			array(
 					'api_nonce' => wp_create_nonce( 'wp_rest' ),
@@ -265,26 +269,44 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 // }
 
 
-add_action( 'rest_api_init', 'rest_validate_email_endpoint' );
-function rest_validate_email_endpoint() {
+function rest_concepts_posts_endpoint() {
     // Declare our namespace
     $namespace = 'rest/v1';
 
     // Register the route
-    register_rest_route( $namespace, '/concepts/', array(
-        'methods'   => 'POST',
-        'callback'  => 'rest_validate_email_handler',
+    register_rest_route( $namespace, '/concepts', array(
+        'methods'   => WP_REST_Server::READABLE,
+        'callback'  => 'rest_concepts_posts_handler',
         'args'      => array(
-            'catId'  => array( 'required' => true ), // This is where we could do the validation callback
+        	'catId'  => array( 'required' => true ), // This is where we could do the validation callback
         )
     ) );
 }
+add_action( 'rest_api_init', 'rest_concepts_posts_endpoint' );
 
 // The callback handler for the endpoint
-function rest_validate_email_handler( $request ) {
+function rest_concepts_posts_handler( $request ) {
     // We don't need to specifically check the nonce like with admin-ajax. It is handled by the API.
-    $params = $request->get_params();
 		$per_page = 4;
+
+    $params = $request->get_params();
+		// set values in session, for the return page
+		$catid_saved;
+		$page_saved;
+		if($params['catId']!=="-1"){
+			setcookie("category", $params['catId'], time()+3600, "/", null, false, true);
+			setcookie("page",  $params['page'], time()+3600, "/", null, false, true);
+			// $_SESSION["category"] = $params['catId'];
+			// $_SESSION["page"] = $params['page'];
+			$catid_saved = $_COOKIE["category"];
+			$page_saved =  $_COOKIE["page"];
+		} else {
+			$catid_saved = 0;
+			$page_saved = 1;
+		}
+
+
+		// set array
 		$filter_concept_posts_options = array(
 			'category'         => $params['catId'],
 			'orderby'          => 'date',
@@ -296,32 +318,27 @@ function rest_validate_email_handler( $request ) {
 			'post_type'        => 'post',
 			'suppress_filters' => true
 		);
-		// all posts (used init. page load) or filters reset
-		// posts for a page, on filter select or filtered
-		// display page click
-		if($params['isAllPosts'] == false) {
-			$filter_concept_posts_options['numberposts'] = $per_page;
-			$filter_concept_posts_options['offset'] = ($params['page']-1) * $per_page;
-		} else {
-			$filter_concept_posts_options['numberposts'] = 12;
-		}
+		$filter_concept_posts_options['numberposts'] = $per_page;
+		$filter_concept_posts_options['offset'] = ($params['page']-1) * $per_page;
+		// $filter_concept_posts_options['offset'] = ($page_saved-1) * $per_page;
+
 		// get poists
 		$posts = get_posts( $filter_concept_posts_options );
 
 		$result;
 	  foreach ( $posts as $key => $post ) {
 			$result[$key] = array(
-										'post_id' => $post->ID,
-										'post_title' => $post->post_title,
-									  'post_thumb_url' => get_the_post_thumbnail_url($post->ID, 'thumbnail', true),
-									  'post_excerpt' => $post->post_excerpt,
-									  'post_permalink' => get_permalink($post->ID)
-									);
+				'post_id' => $post->ID,
+				'post_title' => $post->post_title,
+			  'post_thumb_url' => get_the_post_thumbnail_url($post->ID, 'thumbnail', true),
+			  'post_excerpt' => $post->post_excerpt,
+			  'post_permalink' => get_permalink($post->ID)
+			);
 		}
 
     // Check if email is valid
     if (count($posts)>0) {
-      return new WP_REST_Response( array('posts_data' =>	json_encode($result), 'posts_count' => count($posts)), 200 );
+      return new WP_REST_Response( array('posts_data' =>	json_encode($result), 'posts_count' => count($posts), 'str_bubbleup' => "Sess:" . $catid_saved . " " . $page_saved  ), 200 );
     } else {
 			return new WP_REST_Response( array('posts_data' =>	'', 'posts_count' => 0), 204 );
 		}

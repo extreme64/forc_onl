@@ -79,6 +79,13 @@ $table_prefix = 'wp_';
  */
 define( 'WP_DEBUG', false );
 
+// Query Monitor plugin
+define( 'QM_DARK_MODE', true );
+
+
+
+
+
 /* That's all, stop editing! Happy publishing. */
 
 /** Absolute path to the WordPress directory. */

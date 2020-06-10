@@ -146,6 +146,7 @@ Move Cursor	move	a:hover{cursor:move;}
 .padding-bottom-a2 { padding-bottom: 170px }
 
 .display-b { display: block }
+.temp-hide { display: none; }
 .width-100p { width: 100%}
 .margin-h-a { margin-left: auto; margin-right: auto }
 .text-center { text-align: center }
@@ -255,6 +256,7 @@ h5{
   text-align: center;
 }
 .cta-btn-wrap a,
+.cta-btn-wrap span,
 .cta-btn-wrap a:visited {
   display: inline-block;
   width: 250px;
@@ -266,26 +268,31 @@ h5{
   color: #fff;
   border: 4px solid #fff
 }
-.cta-btn-wrap.alt1 a {
+.cta-btn-wrap.alt1 a,
+.cta-btn-wrap.alt1 * {
   color: #c5d86d;
   border: 4px solid #c5d86d
 }
-.cta-btn-wrap.alt2 a {
+.cta-btn-wrap.alt2 a,
+.cta-btn-wrap.alt2 * {
   color: #d7263d;
   border: 4px solid #d7263d
 }
 
-.cta-btn-wrap a:hover {
+.cta-btn-wrap a:hover.
+.cta-btn-wrap *:hover {
   text-transform: uppercase;
   color: #c5d86d;
   background: #fff;
 }
-.cta-btn-wrap.alt1 a:hover {
+.cta-btn-wrap.alt1 a:hover,
+.cta-btn-wrap.alt1 *:hover {
   text-transform: uppercase;
   color: #fff;
   background: #c5d86d;
 }
-.cta-btn-wrap.alt2 a:hover {
+.cta-btn-wrap.alt2 a:hover,
+.cta-btn-wrap.alt2 *:hover {
   text-transform: uppercase;
   color: #fff;
   background: #d7263d;
@@ -466,6 +473,48 @@ h5{
 .sec-cont > div > div:nth-child(2) {
   text-align: right
 }
+
+
+/** concepts */
+.filters-row .filters-wrap {
+  display: block;
+  text-align: center;
+  /* width: auto; */
+}
+.filters-row .filters-wrap h5 {
+  display: inline-block;
+  width: 230px;
+  height: auto;
+  margin: 0px 5px;
+  padding: 14px 5px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 32px;
+  color: #2e294e;
+  background: #FFF;
+  border: 4px dashed #c5d86d;
+  border-radius: 12px;
+}
+.filters-row .filters-wrap h5:hover {
+  color: #2e294e;
+  background: #FFF;
+  border: 4px solid #c5d86d;
+}
+
+.concepts-row h3 a,
+.concepts-row h4 a,
+.concepts-row h5 a,
+.concepts-row h3 a:visited,
+.concepts-row h4 a:visited,
+.concepts-row h5 a:visited,
+.concepts-row p a,
+.concepts-row p a:visited {
+    color: #2e294e;
+}
+/* ** */ 
+
+
 
 .mid-email-list-cta .mail-list-form input[type="text"],
 .footer1 .mail-list-form input[type="text"] {

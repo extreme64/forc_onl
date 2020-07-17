@@ -1,0 +1,31 @@
+.wpcf7-list-item svg {
+    display: inline;
+    height: 45px;
+    width: 45px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding: 4px;
+    fill: #d7263d;
+    background-color: transparent;
+}
+path.cb-box {
+    /* needed for check sign not to impede the clicking experience, if click on the box [!!! type is null !!!] */
+    pointer-events: none; 
+}
+path.cb-check {
+    /* needed for check sign not to impede the clicking experience, if click on the check [!!! type is null !!!] */
+    pointer-events: none; 
+}
+path.show-svg {
+    display: inline;
+}
+path.hide-svg {
+    display: none;
+}
+
+.wpcf7-list-item input[type='checkbox']{
+    /* we have SVG in place, 
+    so we do not need input element */
+    display: none;
+}
+

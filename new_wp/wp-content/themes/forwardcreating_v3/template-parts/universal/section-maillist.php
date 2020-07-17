@@ -53,6 +53,28 @@ function mailList_element($element_type=1) {
       </section>
       <?php
       break;
+    case 3:
+      // MailChimp sub/unsub form ?>
+
+      
+
+       <section class="mid-email-list-cta container-fluid padding-top-a padding-bottom-a text-center">
+        <div class="rov">
+          <div class="col-md-12 color-0">
+            <h3 class="f-weight-b1">JOIN EMAIL LIST</h3>
+            <h5 class="f-weight-b1">Short newsletter with the latest in your inbox</h5>
+            <span class="mail-list-form margin-top--0">
+              <?php
+              //TODO: add links to Discord and Telegram server/group (Youtube?!)
+              echo do_shortcode('[mc4wp_form id="167"]');     
+              ?>
+            </span>
+
+          </div>
+        </div>
+      </section>
+      <?php
+      break;
 
     default:
     // print "No view to display!";

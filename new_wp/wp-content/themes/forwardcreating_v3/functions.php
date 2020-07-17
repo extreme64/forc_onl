@@ -248,26 +248,6 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 
 
 /** REST API */
-// old
-// add_action( 'wp_enqueue_scripts', 'rest_site_scripts', 999 );
-// function rest_site_scripts() {
-//     // Enqueue our JS file app.js
-//     // wp_enqueue_script( 'rest_appjs',
-//     //   get_template_directory_uri() . '/js/app.js',
-//     //   array( 'jquery' ), filemtime( get_template_directory() . '/js/app.js'), true
-//     // );
-// 		//
-//     // // Provide a global object to our JS file contaning our REST API endpoint, and API nonce
-//     // // Nonce must be 'wp_rest' !
-//     // wp_localize_script( 'rest_appjs', 'rest_object',
-//     //     array(
-//     //         'api_nonce' => wp_create_nonce( 'wp_rest' ),
-//     //         'api_url'   => site_url('/wp-json/rest/v1/')
-//     //     )
-//     // );
-//
-// }
-
 
 function rest_concepts_posts_endpoint() {
     // Declare our namespace
@@ -287,63 +267,83 @@ add_action( 'rest_api_init', 'rest_concepts_posts_endpoint' );
 // The callback handler for the endpoint
 function rest_concepts_posts_handler( $request ) {
     // We don't need to specifically check the nonce like with admin-ajax. It is handled by the API.
-		$per_page = 4;
+	$per_page = 4;
+	$is_last_page;
+	$params = $request->get_params();
+	
+	$page = $params['page'];
+	$page_saved = $params['catId'];
+	$allpages = filter_var($params['allpages'], FILTER_VALIDATE_BOOLEAN);
+	// $loadMoreAction = $params['loadMoreAction'];
+	// $isCategoryFiltering =  $params['isCategoryFiltering'];
+	// set array 
+	$filter_concept_posts_options = array( 
+		'category'         => $params['catId'],
+		'orderby'          => 'date',
+		'order'            => 'DESC',
+		'include'          => array(),
+		'exclude'          => array(),
+		'meta_key'         => '',
+		'meta_value'       => '',
+		'post_type'        => 'post',
+		'suppress_filters' => true
+	);
+	
 
-    $params = $request->get_params();
-		// set values in session, for the return page
-		$catid_saved;
-		$page_saved;
-		if($params['catId']!=="-1"){
-			setcookie("category", $params['catId'], time()+3600, "/", null, false, true);
-			setcookie("page",  $params['page'], time()+3600, "/", null, false, true);
-			// $_SESSION["category"] = $params['catId'];
-			// $_SESSION["page"] = $params['page'];
-			$catid_saved = $_COOKIE["category"];
-			$page_saved =  $_COOKIE["page"];
-		} else {
-			$catid_saved = 0;
-			$page_saved = 1;
-		}
+	$query_posts1 = new WP_Query( array( 'cat' => $params['catId'], 'posts_per_page' => $per_page) );
+	$fposts = $query_posts1->found_posts;
+	$fposts_pages_max = $query_posts1->max_num_pages;
+	$is_last_page = ($fposts_pages_max==$page) ? true : false;
+	
 
-
-		// set array
-		$filter_concept_posts_options = array(
-			'category'         => $params['catId'],
-			'orderby'          => 'date',
-			'order'            => 'DESC',
-			'include'          => array(),
-			'exclude'          => array(),
-			'meta_key'         => '',
-			'meta_value'       => '',
-			'post_type'        => 'post',
-			'suppress_filters' => true
-		);
+	if($allpages && $page>1) {
+		$filter_concept_posts_options['numberposts'] = $per_page * ($page);
+		$filter_concept_posts_options['offset'] = 0;
+	}else{
 		$filter_concept_posts_options['numberposts'] = $per_page;
-		$filter_concept_posts_options['offset'] = ($params['page']-1) * $per_page;
-		// $filter_concept_posts_options['offset'] = ($page_saved-1) * $per_page;
-
-		// get poists
-		$posts = get_posts( $filter_concept_posts_options );
-
-		$result;
-	  foreach ( $posts as $key => $post ) {
-			$result[$key] = array(
-				'post_id' => $post->ID,
-				'post_title' => $post->post_title,
-			  'post_thumb_url' => get_the_post_thumbnail_url($post->ID, 'thumbnail', true),
-			  'post_excerpt' => $post->post_excerpt,
-			  'post_permalink' => get_permalink($post->ID)
-			);
+		if($page==1){
+			$filter_concept_posts_options['offset'] = 0;
+		}else{
+			$filter_concept_posts_options['offset'] = $per_page * ($page-1);
 		}
+	}
 
-    // Check if email is valid
+
+	// get poists
+	$posts = get_posts( $filter_concept_posts_options );
+
+	$result;
+	foreach ( $posts as $key => $post ) {
+		$result[$key] = array(
+			'post_id' => $post->ID,
+			'post_title' => $post->post_title,
+			'post_thumb_url' => get_the_post_thumbnail_url($post->ID, 'thumbnail', true),
+			'post_excerpt' => $post->post_excerpt,
+			'post_permalink' => get_permalink($post->ID)
+		);
+	}
+
+    // Check what do we have for posts
     if (count($posts)>0) {
-      return new WP_REST_Response( array('posts_data' =>	json_encode($result), 'posts_count' => count($posts), 'str_bubbleup' => "Sess:" . $catid_saved . " " . $page_saved  ), 200 );
+		return new WP_REST_Response( 
+			array(	'posts_data' =>	json_encode($result), 
+					'posts_count' => count($posts), 
+					'is_last_page' => $is_last_page,  
+					'str_bubbleup' => "php: " . $is_last_page 
+			), 
+			200 
+		);
     } else {
-			return new WP_REST_Response( array('posts_data' =>	'', 'posts_count' => 0), 204 );
-		}
-    return new WP_REST_Response( array('posts_data' => 'No posts for now. Soon to come.', 'posts_count' => count($posts)), 200 );
+		return new WP_REST_Response( 
+			array(
+					'posts_data' =>	json_encode(NULL), 
+					'posts_count' => 0, 
+					'is_last_page' => $is_last_page
+			), 
+			204 
+		);
+	}
 }
 
 
-/****/
+

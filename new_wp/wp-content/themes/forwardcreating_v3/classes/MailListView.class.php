@@ -20,7 +20,7 @@ namespace v3 {
         break;
         case View::VIEW_TYPE_COL:
           // in a col
-          mailList_element(2);
+          mailList_element(3);
         break;
 
         default:

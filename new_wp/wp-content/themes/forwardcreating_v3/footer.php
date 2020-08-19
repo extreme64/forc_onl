@@ -9,6 +9,12 @@
  * @package ForwardCreating_v3
  */
 
+    namespace v3;
+    $theme = wp_get_theme();
+    $themeName =  $theme->get( 'TextDomain' );
+    try {
+        include_once get_theme_root() . '/' . $themeName . '/classes/SocialIconsView.class.php';
+    } catch (Exception $e) {}
 ?>
 
 	</div><!-- #content -->
@@ -16,20 +22,61 @@
 	<footer id="colophon" class=" container-fluid site-footer footer1 padding-top-a1 padding-bottom-a1 color-5 bg-color-0">
 		<div class="row">
 			<div class="col-md-6 offset-md-1">
+
 				<div class="">
-					<h4><i class="fas fa-envelope-open"></i> JOIN EMAIL LIST</h4>
-					<h5>Occasional newsletter with the latest in your inbox</h5>
-					<form class="mail-list-form" action="index.html" method="post">
-						<input type="text" name="" value="">
-						<input type="button" name="" value="SUBMIT">
-					</form>
-				</div>
-				<div class="social-icons">
-					<i class="fab fa-youtube-square"></i>
-					<i class="fab fa-instagram"></i>
-					<i class="fab fa-facebook-square"></i>
-					<i class="fab fa-reddit-square"></i>
-				</div>
+                    <?php
+                    // get all menu items
+                    $navMenuSet = array(
+                        'status' => 'publish', 
+                        'orderby' => 'menu_order');
+                    $menuReturn = wp_get_nav_menu_items( 'header-main', $navMenuSet); 
+                    $menu = array();
+                    // make top and sub menus
+                    foreach ($menuReturn as $m) {
+                        // no parent, you are TOP
+                        if (empty($m->menu_item_parent)) {
+                            $menu[$m->ID] = array();
+                            $menu[$m->ID]['ID']         =   $m->ID;
+                            $menu[$m->ID]['title']      =   $m->title;
+                            $menu[$m->ID]['url']        =   $m->url;
+                            $menu[$m->ID]['children']   =   array();
+                        }else{
+                            // you go to childs submenu
+                            $menu[$m->menu_item_parent]['children'][] = $m; 
+                        }
+                    }
+                    // render all menu items 
+                    foreach ($menu as $key => $m) {                    
+                        echo '<div class="foot-menu-items1">';
+                        echo '<ul>'; 
+                        echo '<li><a href="'.$m['url'].'">'.$m['title'].'</a></li>'; 
+                        $curItemsChilds = $m['children'];
+                        if(!empty($curItemsChilds)): ?>
+                            <ul>
+                            <?php 
+                            foreach ($curItemsChilds as $itemKey2 => $value) {
+                                echo '<li><a href="'.$value->url.'">'.$value->title.'</a></li>';
+                            } ?>
+                            </ul>
+                        <?php 
+                        endif;
+                        echo '</ul>';
+                        echo "</div>"; 
+                    }
+
+                    ?>
+                </div>
+                <style>
+                    .social-icons {
+                        float: left;
+                        width: 100%;
+                    }
+                </style>
+                <?php
+                /* Social icons in a col */
+                $socialiconsView = new SocialIconsView(View::VIEW_TYPE_COL, 'margin-top--0');
+                print $socialiconsView->render();
+                ?>
 
 			</div>
 			<div class="col-md-4">

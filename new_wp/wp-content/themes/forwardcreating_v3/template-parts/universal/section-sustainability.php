@@ -7,14 +7,6 @@
  * @package ForwardCreating_v3
  */
 ?>
-<style media="screen">
-  .sec-why-bg {
-    /* background: url(../new_wp/wp-content/uploads/2019/09/download-13.jpg); */
-    background-position: center left;
-    background-repeat: no-repeat;
-    background-size: contain;
-  }
-</style>
 <section class="sec-why container-fluid mt-4 padding-top-a1 padding-bottom-a1 sec-why-bg">
   <div class="row">
     <div class="col-md-8 offset-2 text-center">
@@ -32,7 +24,7 @@
         info: Future Of Employment
         Science Is Getting Less Bang for Its Buck
       </span>
-      <img class="padding-top-a" src="../new_wp/wp-content/uploads/2020/02/local-production-1.jpg" alt="local-production">
+      <img class="padding-top-a" src="<?php print get_site_url() ?>/wp-content/uploads/2020/02/local-production-1.jpg" alt="local-production">
       <h2 class="padding-top-a">What Do You Want To Sustain?</h2>
       <h4>
         To answer this question, we need to answer other one, "How feasible is the sustainability of

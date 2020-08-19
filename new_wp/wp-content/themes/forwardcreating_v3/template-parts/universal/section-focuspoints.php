@@ -47,9 +47,9 @@
   </div>
   <div class="row">
     <div class="col-md-10 offset-md-1 margin-top-a text-center">
+      <h3 class="margin-bot-0">More on principals of absolute sustainability</h3>
       <span class="cta-btn-wrap alt2">
-        <h3 class="margin-bot-0">More on principals of absolute sustainability</h3>
-        <a class="margin-top--0 margin-btn1 padding-btn1" href="http://forwardcreating.com/new_wp/qa/">Q & A</a>
+        <a class="margin-top--0 margin-btn1 padding-btn1" href="<?php print get_site_url() ?>/qa/">Q & A</a>
       </span>
     </div>
   </div>

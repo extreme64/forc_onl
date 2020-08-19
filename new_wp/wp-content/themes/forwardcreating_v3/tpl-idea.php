@@ -82,10 +82,7 @@ get_header();
 
       <style media="screen">
         .sec-why-bg {
-          /* background: url(../new_wp/wp-content/uploads/2019/09/download-13.jpg); */
-          background-position: center left;
-          background-repeat: no-repeat;
-          background-size: contain;
+          /* background: url(../wp-content/uploads/2019/09/download-13.jpg); */
         }
       </style>
       <section class="sec-why container-fluid mt-4 padding-top-a1 padding-bottom-a1 sec-why-bg">

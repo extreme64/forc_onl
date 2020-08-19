@@ -16,10 +16,7 @@ function contribute_element($element_type=1) {
     <!-- <div class="bg-color-1"> -->
     <style media="screen">
       .ci-contribute-bg {
-        background: url(/new_wp/wp-content/uploads/2019/09/cont-2.jpg);
-        background-position: center right;
-        background-repeat: no-repeat;
-        background-size: contain;
+        background: url(<?php print get_site_url() ?>/wp-content/uploads/2019/09/cont-2.jpg);
       }
     </style>
       <section class="sec-cont container-fluid ci-contribute-bg t-shadow-w1 box-shadow1">

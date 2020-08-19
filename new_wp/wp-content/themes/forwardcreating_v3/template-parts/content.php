@@ -7,26 +7,35 @@
  * @package ForwardCreating_v3
  */
 
+
+
+// if no image is attached get the default graphic instead
+$image_style_str = 'full';
+$image = get_the_post_thumbnail_url(get_the_ID(), $image_style_str);
+if(!$image) {
+    if($image_style_str == 'full')
+        $image = get_template_directory_uri() . "/imgs" . "/default-image.png";
+    else
+        $image = get_template_directory_uri() . "/imgs" . "/default-image-33.png";
+}
 ?>
-
-<style media="screen">
-	.post-hero-bg {
-		min-height: 400px;
-		background-image: url(<?php print get_the_post_thumbnail_url(get_the_ID(),'full');  ?>)
-	}
-</style>
-
+<style media="screen"> .post-hero-bg { background-image: url(<?php print $image ?>); } </style>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header container-fluid">
+	<header class="entry-header container-fluid"> 
 		<!-- intro image on top -->
 		<div class="row">
-			<div  class="col-md-12 bg-setup-1 post-hero-bg">
-				<?php // forwardcreating_v3_post_thumbnail(); ?>
-			</div>
+            <?php $title_post = esc_html(get_the_title()); // esc_html( get_the_title() )  ?>
+			<div  class="col-md-12 bg-setup-1 post-hero-bg" title="<?php print $title_post; ?>"></div>
 		</div>
 		<div class="row margin-top-0">
-			<div class="col-md-12">
-				<?php
+			<div class="col-md-6 offset-md-3">
+                <?php
+                 // If there is a parent, display the link.
+                $parent_title = get_the_title( $post->post_parent );   
+                if ( $parent_title !== $title_post ) {
+                    print '<a href="' . esc_url( get_permalink( $post->post_parent ) ) . '" alt="' . esc_attr( $parent_title ) . '">' . $parent_title . '</a> » ';
+                }
+
 				if ( is_singular() ) :
 					the_title( '<h1 class="entry-title text-center">', '</h1>' );
 				else :
@@ -36,10 +45,7 @@
 				if ( 'post' === get_post_type() ) :
 					?>
 					<div class="entry-meta">
-						<?php
-						// forwardcreating_v3_posted_on();
-						// forwardcreating_v3_posted_by();
-						?>
+						<?php // forwardcreating_v3_posted_on(); // forwardcreating_v3_posted_by(); ?>
 					</div><!-- .entry-meta -->
 				<?php endif; ?>
 			</div>

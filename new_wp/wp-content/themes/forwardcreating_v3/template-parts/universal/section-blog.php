@@ -31,9 +31,16 @@
 
     $news_posts = get_posts( $news_posts_options );
     foreach ($news_posts as $np_i => $post) :
-      $featured_img_url = get_the_post_thumbnail_url($post->ID, 'medium_large');
-      $loop_class_name_use =  'news-sr-bg-'.$np_i;
-      $loop_class_name = '.'.$loop_class_name_use; ?>
+        $featured_img_url = get_the_post_thumbnail_url($post->ID, 'medium_large');
+        $image_style_str = 'full';
+        if(!$featured_img_url) {
+            if($image_style_str == 'full')
+                $featured_img_url = get_template_directory_uri() . "/imgs" . "/default-image.png";
+            else
+                $featured_img_url = get_template_directory_uri() . "/imgs" . "/default-image-33.png";
+        }
+        $loop_class_name_use =  'news-sr-bg-'.$np_i;
+        $loop_class_name = '.'.$loop_class_name_use; ?>
 
       <style media="screen">
         <?php print $loop_class_name; ?> {

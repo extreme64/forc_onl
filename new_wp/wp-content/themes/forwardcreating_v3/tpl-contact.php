@@ -8,7 +8,8 @@ namespace v3;
 $theme = wp_get_theme();
 $themeName =  $theme->get( 'TextDomain' );
 try {
-	include get_theme_root() . '/' . $themeName . '/classes/MailListView.class.php';
+    include get_theme_root() . '/' . $themeName . '/classes/MailListView.class.php';
+    include_once get_theme_root() . '/' . $themeName . '/classes/SocialIconsView.class.php';
 } catch (Exception $e) {}
 
 get_header();
@@ -33,23 +34,21 @@ get_header();
               ?>
               </div>
             </div>
-             <div class="col-md-3">
+            <div class="col-md-3">
               <h3 class="text-center">Other avenues</h3>
               <h5 class="padding-bottom-0 text-center">
                 If it is more convenient here are our social network channels and other online locations
               </h5>
-              <div class="social-icons text-center">
-                <i class="fab fa-youtube-square" aria-hidden="true"></i>
-                <i class="fab fa-instagram" aria-hidden="true"></i>
-                <i class="fab fa-facebook-square" aria-hidden="true"></i>
-                <i class="fab fa-reddit-square" aria-hidden="true"></i>
-              </div>
-              </div>
+              <?php
+                /* Social icons in a col */
+                $socialiconsViewContent = new SocialIconsView(View::VIEW_TYPE_COL, "text-center");
+                print $socialiconsViewContent->render();
+              ?>
             </div>
           </div>
         </div>
       </section>
-      </div>
+     </div>
 
       <section class="padding-top-0 padding-bottom-0">
 
@@ -57,20 +56,6 @@ get_header();
         get_sidebar();
         ?>
       </section>
-
-      <!-- <div class="bg-color-1">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12">
-              <?php
-              /* Mailing List in a col */
-              // $mailListView = new MailListView(View::VIEW_TYPE_FULL);
-              // print $mailListView->render();
-              ?>
-            </div>
-          </div>
-        </div>
-      </div> -->
 
     </main><!-- #main -->
   </div><!-- #primary -->

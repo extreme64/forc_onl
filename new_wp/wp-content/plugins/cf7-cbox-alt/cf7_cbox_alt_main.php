@@ -7,33 +7,30 @@
 * Author: MastG
 * Author URI: https://forwardcreating.com/
 **/
-
-
-
-
-
+ 
 
 // define the mc4wp_form_content callback 
 function filter_mc4wp_form_content( $content, $form, $element ) { 
 
 	try {
 		include dirname( __FILE__ ) . '/FrontUI.class.php';
+		include dirname( __FILE__ ) . '/ui/ui-basic.php';
 	} catch (Exception $e) {}
 	$checkbox_c_ui = new FrontUI(2);
 	$ui_str =  $checkbox_c_ui->render();
 
-	$dom = new DOMDocument();
-	$dom->loadHTML($content);
+	$domContent = new DOMDocument();
+	$domContent->loadHTML($content);
 	// get all inputs, alter sub/unsub ones, make SVG elem. for them
-	$inputs = $dom->getElementsByTagName('input');
+	$inputs = $domContent->getElementsByTagName('input');
 
 	// Anonymous func. for adding attes from an a setup. array
-	$addAttrs = function($attrs_array, $element, &$dom)
+	$addAttrs = function($attrs_array, $element, &$domContent)
 	{
 		$t_attr;
 		foreach($attrs_array as $a) {
-			// $dom as reference
-			$t_attr = $dom->createAttribute($a['name']);
+			// $domContent as reference
+			$t_attr = $domContent->createAttribute($a['name']);
 			$t_attr->value = $a['value'];
 			// add attr. to the element
 			$element->appendChild($t_attr);
@@ -45,57 +42,53 @@ function filter_mc4wp_form_content( $content, $form, $element ) {
 	foreach ($inputs as $input) {
 		if($input->getAttribute('value') == 'subscribe' || $input->getAttribute('value') == 'unsubscribe') {
 			// create SVG el. and attr. to add to first
-			$svg_attrs_ary = array( 
-				array("name"=>"class", "value"=>"rc-check"),	
-				array("name"=>"version", "value"=>"1.1"), 
-				array("name"=>"xmlns", "value"=>"http://www.w3.org/2000/svg"), 
-				array("name"=>"xmlns:xlink", "value"=>"http://www.w3.org/1999/xlink"),
-				array("name"=>"x", "value"=>"0px"),
-				array("name"=>"y", "value"=>"0px"),
-				array("name"=>"viewBox", "value"=>"0 0 360 360"),
-				array("name"=>"style", "value"=>"enable-background:new 0 0 360 360;"),
-				array("name"=>"xml:space", "value"=>"preserve")
-			);
-			$evg_e = $dom->createElement('svg');
-			$evg_e = $addAttrs($svg_attrs_ary, $evg_e, $dom);
+			$doHide = '';
+			$attr_class_sel = 'rb-box';
+			$attr_class_unsel = 'rb-check';
+			if($input->getAttribute('value') == 'subscribe') {
+				$svg_attrs_ary = array_merge(UIViews::SVG_CLASS_RB_SELECTED, UIViews::SVG_ATTRS);
+				$attr_d_val = UIViews::CHECKBOX_BOX_D_VAL;
+			}else{
+				$svg_attrs_ary = array_merge(UIViews::SVG_CLASS_RB_UNSELECTED, UIViews::SVG_ATTRS);
+				$attr_d_val = UIViews::CHECKBOX_CHECK_D_VAl;
+				$doHide = ' hide-svg';
+			}
+			$evg_e = $domContent->createElement('svg'); 
+			$evg_e = $addAttrs($svg_attrs_ary, $evg_e, $domContent);
 			
+
 			// create PATH el. and path attrs. to add to first
-			$path = $dom->createElement('path', "");
-			$path_attr = $dom->createAttribute('class');
-			$path_attr->value = 'cb-check hide-svg';
-			$path->appendChild($path_attr);
-			$path_attr = $dom->createAttribute('d');
-			$path_attr->value = 'M249.844,106.585c-6.116,0-11.864,2.383-16.19,6.71l-84.719,84.857l-22.58-22.578c-4.323-4.324-10.071-6.706-16.185-6.706
-c-6.115,0-11.863,2.382-16.187,6.705c-4.323,4.323-6.703,10.071-6.703,16.185c0,6.114,2.38,11.862,6.703,16.184l38.77,38.77
-c4.323,4.324,10.071,6.706,16.186,6.706c6.112,0,11.862-2.383,16.19-6.71L266.03,145.662c8.923-8.926,8.922-23.448,0-32.374
-C261.707,108.966,255.958,106.585,249.844,106.585z';
-			$path->appendChild($path_attr);
-			// add this element to SVg as child
+			$path = UIViews::make_checkbox_path_element($domContent, $attr_class_sel, UIViews::CHECKBOX_BOX_D_VAL);
 			$evg_e->appendChild($path);
-			
+
+			$path = UIViews::make_checkbox_path_element($domContent, $attr_class_unsel.$doHide, UIViews::CHECKBOX_CHECK_D_VAl);
+			$evg_e->appendChild($path);
+				
+			/** */
 			// insert before first child (input radio btn)
 			$firstSibling = $input->parentNode->firstChild;
 			$input->parentNode->insertBefore( $evg_e, $firstSibling );
+
+
 			// add attrs to existing INPUT element (hide it etc.)
-			$attribute = $dom->createAttribute('class');
-			$attribute->value = 'some-class';
+			$attribute = $domContent->createAttribute('class');
+			$attribute->value = 'cf7-cbrb-alt';
 			$input->appendChild($attribute);
-			
+
+
+			//move span out of the label
+			//hide original and add oen affter the svg
+			// $parentLabel = $input->parentNode;
+			// $removeSpan = $input->nextSibling;
+			// $oldSpan = $parentLabel->removeChild($removeSpan);
+			// $evg_e->parentNode->appendChild($oldSpan);
 		}
 	}
-
-	return $dom->saveHTML();
-
-    return $content; 
+	return $domContent->saveHTML();
 }; 
          
 // add the filter 
 add_filter( 'mc4wp_form_content', 'filter_mc4wp_form_content', 10, 3 ); 
-
-
-
-
-
 
 
 
@@ -129,6 +122,7 @@ function cf7_cbox_alt_styles() {
 
 
 /* clone of a function from CF7, altered to have SVG code, for the input checkbox element */
+//TODO add click on text too
 function custom_datalist_form_tag_handler( $tag ) {	
     
     

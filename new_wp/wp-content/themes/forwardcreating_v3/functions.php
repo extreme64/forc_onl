@@ -201,13 +201,13 @@ function add_id_to_script( $tag, $handle, $src ) {
 }
 // apply on rest.js
 apply_filters( 'script_loader_tag',
-	'http://forwardcreating.com/new_wp/wp-content/themes/forwardcreating_v3/js/rest.js?ver=20151215',
+	get_site_url() . '/wp-content/themes/forwardcreating_v3/js/rest.js?ver=20151215',
 	"rest",
 	get_template_directory_uri() ."/js/rest.js"
 );
 // apply on posts.js
 apply_filters( 'script_loader_tag',
-	'http://forwardcreating.com/new_wp/wp-content/themes/forwardcreating_v3/js/modules/posts.js?ver=20151215',
+	get_site_url() . '/wp-content/themes/forwardcreating_v3/js/modules/posts.js?ver=20151215',
 	"posts_jsmo",
 	get_template_directory_uri() ."/js/modules/posts.js"
 );

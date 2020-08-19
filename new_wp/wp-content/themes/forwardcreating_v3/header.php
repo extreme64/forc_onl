@@ -8,7 +8,7 @@
  *
  * @package ForwardCreating_v3
  */
-
+ 
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -16,7 +16,8 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
-
+    <!-- yt -->
+    <meta name="google-site-verification" content="pgviNGO9YRyAUCqMWIO82wb3rf8rM70mUJa0rWuMyQA" />
 	<?php wp_head(); ?>
 </head>
 

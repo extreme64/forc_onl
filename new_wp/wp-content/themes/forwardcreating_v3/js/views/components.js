@@ -1,6 +1,7 @@
 /** UI animation and graphis HTML collection*/
 const uiHtmlCollection = {
-  loading1 : `<img width="65" data-ui="loading" src="http://forwardcreating.com/new_wp/wp-content/themes/forwardcreating_v3/ui/c3c4d331234507.564a1d23db8f9.gif">`
+  /*TODO: check gif loading for concepts */
+  loading1 : `<img width="65" data-ui="loading" src="../wp-content/themes/forwardcreating_v3/ui/c3c4d331234507.564a1d23db8f9.gif">`
 }
 
 // get html for loading graphics

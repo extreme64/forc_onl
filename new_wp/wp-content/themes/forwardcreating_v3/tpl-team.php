@@ -68,7 +68,7 @@ get_header();
           <div class="col-nd-12">
             <h4>
               If you have an idea how to be a member of the Forward Creating communty or have any kind
-              of a suggestion or critic <a href="http://forwardcreating.com/new_wp/contact/">contact us</a>.
+              of a suggestion or critic <a href="<?php print get_site_uri() ?>/contact/">contact us</a>.
             </h4>
           </div>
         </div>

@@ -65,7 +65,7 @@ get_header();
             <div class="tools-wrap">
               <div class="tool-info tools-img-wrap">
                 <span class="border-box-1" aria-hidden="true">
-                  <img src="https://cdn.iconscout.com/icon/free/png-256/gimp-555552.png" alt="">
+                  <img src="<?php print get_template_directory_uri() . "/imgs" . "/gimp_photo_editor.jpg" ?>" alt="gimp photo editor">
                 </span>
                 <h4 class="margin-top-0">GIMP</h4>
                 <h5>Raster Graphics Editor</h5>
@@ -83,7 +83,7 @@ get_header();
               </div>
               <div class="tool-info tools-img-wrap">
                 <span class="border-box-1" aria-hidden="true">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Firefox_Logo%2C_2017.svg/480px-Firefox_Logo%2C_2017.svg.png" alt="">
+                  <img src="<?php print get_template_directory_uri() . "/imgs" . "/firefox_browser.jpg" ?>" alt="firefox browser">
                 </span>
                 <h4 class="margin-top-0">Firefox</h4>
                 <h5>Web Browser</h5>
@@ -101,7 +101,7 @@ get_header();
               </div>
               <div class="tool-info tools-img-wrap">
                 <span class="border-box-1" aria-hidden="true">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/GNU_Solfege_Logo.svg/220px-GNU_Solfege_Logo.svg.png" alt="">
+                  <img src="<?php print get_template_directory_uri() . "/imgs" . "/gnu_solfege_.jpg" ?>" alt="gnu solfege">
                 </span>
                 <h4 class="margin-top-0">GNU Solfege</h4>
                 <h5>Ear and Rhythm Training</h5>
@@ -121,7 +121,7 @@ get_header();
               </div>
               <div class="tool-info tools-img-wrap">
                 <span class="border-box-1" aria-hidden="true">
-                  <img src="https://img.linuxfr.org/img/687474703a2f2f7069782e746f696c652d6c696272652e6f72672f75706c6f61642f6f726967696e616c2f313336333034313139342e706e67/1363041194.png" alt="">
+                  <img src="<?php print get_template_directory_uri() . "/imgs" . "/ardour_audio_producton.jpg" ?>" alt="ardour audio producton">
                 </span>
                 <h4 class="margin-top-0">Ardour</h4>
                 <h5>Record, Edit, Mix and Produce Audio</h5>
@@ -141,7 +141,7 @@ get_header();
               </div>
               <div class="tool-info tools-img-wrap">
                 <span class="border-box-1" aria-hidden="true">
-                  <img src="https://images.vexels.com/media/users/3/141382/isolated/lists/c7a747215c71c95b99cc87db1c211d04-unix-logo.png" alt="">
+                 <img src="<?php print get_template_directory_uri() . "/imgs" . "/unix-logo.jpg" ?>" alt="/unix logo">
                 </span>
                 <h4 class="margin-top-0">Linux</h4>
                 <h5>Operating Systems</h5>
@@ -161,7 +161,7 @@ get_header();
               </div>
               <div class="tool-info tools-img-wrap">
                 <span class="border-box-1" aria-hidden="true">
-                  <img src="https://laurellaceyval.files.wordpress.com/2016/02/duckduckgo_logo-svg.png" alt="">
+                  <img src="<?php print get_template_directory_uri() . "/imgs" . "/duckduckgo_search_engine.jpg" ?>" alt="duckduckgo search engine">
                 </span>
                 <h4 class="margin-top-0">DuckDuckGo</h4>
                 <h5>Internet Search Engine</h5>
@@ -180,7 +180,7 @@ get_header();
               </div>
               <div class="tool-info tools-img-wrap">
                 <span class="border-box-1" aria-hidden="true">
-                  <img src="https://raw.githubusercontent.com/github/explore/5c564e0ba18e2808c3bb5389d3d61caf52fd7992/topics/godot/godot.png" alt="">
+                  <img src="<?php print get_template_directory_uri() . "/imgs" . "/godot_game_engine.jpg" ?>" alt="godot game engine">
                 </span>
                 <h4 class="margin-top-0">Godot</h4>
                 <h5>Game Engine, 2D/3D Visualisation</h5>
@@ -200,7 +200,7 @@ get_header();
               </div>
               <div class="tool-info tools-img-wrap">
                 <span class="border-box-1" aria-hidden="true">
-                  <img src="https://4.bp.blogspot.com/-Io7nVVVudEw/WbDF_IV6GZI/AAAAAAAAE0w/gS7hKU4MQU80EmWb34MrTNfl_adQWYHxgCLcBGAs/s320/Blender_logo_no_text.svg.png" alt="">
+                  <img src="<?php print get_template_directory_uri() . "/imgs" . "/Blender_logo_3d_2d_modelind.jpg" ?>" alt="Blender logo 3d 2d modelind">
                 </span>
                 <h4 class="margin-top-0">Blender</h4>
                 <h5>3D modeling, animation, video editing</h5>

@@ -34,22 +34,31 @@
           $main_posts = get_posts( $main_posts_options );
           foreach ($main_posts as $mp_i => $post_m) :
             $featured_img_url = get_the_post_thumbnail_url($post_m->ID, 'medium_large');
+            $image_style_str = 'full';
+            if(!$featured_img_url) { 
+                if($image_style_str == 'full')
+                  $featured_img_url = get_template_directory_uri() . "/imgs" . "/default-image.png";
+                else if($image_style_str == 'medium_large')
+                  $featured_img_url = get_template_directory_uri() . "/imgs" . "/default-image-33.png";
+                else
+                  $featured_img_url = get_template_directory_uri() . "/imgs" . "/default-image-15.png";
+            }
             $loop_class_name_f_use =  'main-sr-bg-'.$mp_i;
             $loop_class_name_f = '.'.$loop_class_name_f_use; ?>
 
             <style media="screen">
               .sec-big-prods <?php print $loop_class_name_f; ?> {
-                display: block;
+               /* display: block;
                 height: 500px;
                 width: 100%;
                 margin: 0px auto 0px auto;
-                padding: 15px;
+                padding: 15px;*/ 
                 background-image: url(<?php print $featured_img_url; ?>);
-                background-position: center bottom;
+               /** background-position: center bottom;
                 background-repeat: no-repeat;
-                background-size: cover;
+                background-size: cover;*/
               }
-            </style>
+            </style> 
             <div class="col-md-4">
                 <span class="big-prods-span <?php print $loop_class_name_f_use; ?> box-shadow1" >
                   <h2>
@@ -130,7 +139,16 @@
               $first_post;
               if($num_main_posts>0) {
                 $first_post = array_shift($main_posts);
-                $fp_featured_img_url = get_the_post_thumbnail_url($first_post->ID, 'medium_large'); ?>
+                $fp_featured_img_url = get_the_post_thumbnail_url($first_post->ID, 'medium_large'); 
+                $image_style_str = 'full';
+                if(!$fp_featured_img_url) {
+                    if($image_style_str == 'full')
+                      $fp_featured_img_url = get_template_directory_uri() . "/imgs" . "/default-image.png";
+                    else if($image_style_str == 'medium_large')
+                      $fp_featured_img_url = get_template_directory_uri() . "/imgs" . "/default-image-33.png";
+                    else
+                      $fp_featured_img_url = get_template_directory_uri() . "/imgs" . "/default-image-15.png";
+                }?>
                 <img class="width-100p" src="<?php print $fp_featured_img_url; ?>" alt="<?php print $first_post->post_title ?>">
               <?php
               }
@@ -138,7 +156,7 @@
             </div>
             <div class="col-md-5">
               <h2>
-                <a href="<?php print esc_url( get_permalink($first_post->ID) ); ?>">
+                <a href="<?php print esc_url( get_permalink($first_post->ID) ); ?>"> 
                   <?php print $first_post->post_title ?>
                 </a>
               </h2>
@@ -156,6 +174,15 @@
 
           foreach ($main_posts as $mp_i => $post_m) :
             $featured_img_url = get_the_post_thumbnail_url($post_m->ID, 'medium_large');
+            $image_style_str = 'medium_large';
+            if(!$featured_img_url) {
+                if($image_style_str == 'full')
+                  $featured_img_url = get_template_directory_uri() . "/imgs" . "/default-image.png";
+                else if($image_style_str == 'medium_large')
+                  $featured_img_url = get_template_directory_uri() . "/imgs" . "/default-image-33.png";
+                else
+                  $featured_img_url = get_template_directory_uri() . "/imgs" . "/default-image-15.png";
+            }
             $loop_class_name_f_use =  'main-sr-bg-'.$mp_i;
             $loop_class_name_f = '.'.$loop_class_name_f_use; ?>
 

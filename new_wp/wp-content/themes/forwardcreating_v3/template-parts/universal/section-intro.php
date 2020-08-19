@@ -20,12 +20,12 @@
             </div>
           </div>
           <div class="col-md-3">
-            <img src="http://forwardcreating.com/new_wp/wp-content/uploads/2019/09/download-1.png" alt="">
+            <img src="<?php print get_site_url() ?>/wp-content/uploads/2019/09/download-1.png" alt="">
           </div>
         </div>
         <div class="row">
           <div class="col-md-10 offset-md-1 cta-btn-wrap margin-top-a">
-            <a class="margin-btn1 padding-btn1" href="http://forwardcreating.com/new_wp/idea/">IDEA</a>
+            <a class="margin-btn1 padding-btn1" href="<?php print get_site_url() ?>/idea/">IDEA</a>
           </div>
         </div>
       </section>
